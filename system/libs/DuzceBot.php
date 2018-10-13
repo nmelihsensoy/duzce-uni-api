@@ -32,7 +32,7 @@
                     $i++;
                     $item['headline'] = $article->find('.news-content h4', 0)->plaintext;
                     $item['date'] = $article->find('.news-date', 0)->plaintext;
-                    $item['content'] = $article->find('.news-content p[class!=news-date]', 0)->plaintext;
+                    $item['content'] = $article->find('.news-content', 0)->last_child->plaintext;
 
                     $articles[] = $item;
                     if($i == 10) break;
