@@ -18,7 +18,6 @@
 		    curl_setopt($ch, CURLOPT_COOKIEJAR, "cookies.txt");
 		    curl_setopt($ch, CURLOPT_COOKIEFILE, "cookies.txt");
 			curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-			curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
 			$icerik = curl_exec($ch);
 			curl_close($ch);
 			return $icerik;
@@ -29,12 +28,13 @@
                 $html->load($this->duyuruHttpOutput(), true, false);
                 
                 foreach($html->find('ul.tum-d') as $article) {
-                    $item['headline'] = $article->find('.news-content h4', 0)->plaintext;
+                    $item['headline'] = $article->find('.news-content', 0)->plaintext;
                     
                     $articles[] = $item;
                 }
                 
                 $html->clear();
+                unset($html);
                 return $articles;	
         }
 
