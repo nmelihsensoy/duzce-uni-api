@@ -7,5 +7,7 @@
     $duzceBot = new DuzceBot();
     $debug = $duzceBot->getContent();
 
+    echo '<pre>';
     print_r($debug);
+    echo '</pre>';
 ?>

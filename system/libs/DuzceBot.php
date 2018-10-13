@@ -26,11 +26,14 @@
         function getContent(){
             $html = new simple_html_dom();
                 $html->load($this->duyuruHttpOutput(), true, false);
-                
+
+                $i = 0;
                 foreach($html->find('ul.tum-d') as $article) {
-                    $item['headline'] = $article->find('.news-content', 0)->plaintext;
+                    $i++;
+                    $item['headline'] = $article->find('.news-content h4', 0)->plaintext;
                     
                     $articles[] = $item;
+                    if($i == 10) break;
                 }
                 
                 $html->clear();
