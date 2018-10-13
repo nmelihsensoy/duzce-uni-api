@@ -5,9 +5,7 @@
     require('system/libs/DuzceBot.php');
 
     $duzceBot = new DuzceBot();
-    $debug = $duzceBot->getContent();
+    $debug = $duzceBot->duyuruJsonEncode();
 
-    echo '<pre>';
-    print_r($debug);
-    echo '</pre>';
+    echo $debug;
 ?>

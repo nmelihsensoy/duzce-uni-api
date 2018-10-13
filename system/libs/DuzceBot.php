@@ -31,7 +31,9 @@
                 foreach($html->find('ul.tum-d') as $article) {
                     $i++;
                     $item['headline'] = $article->find('.news-content h4', 0)->plaintext;
-                    
+                    $item['date'] = $article->find('.news-date', 0)->plaintext;
+                    $item['content'] = $article->find('.news-content p', 0)->plaintext;
+
                     $articles[] = $item;
                     if($i == 10) break;
                 }
@@ -40,6 +42,23 @@
                 unset($html);
                 return $articles;	
         }
+
+        function duyuruJsonEncode(){
+			$json["duyuru"] = $this->getContent();
+			return json_encode($json);
+		}
+		
+		function jsonFileOutput($file){
+			
+			if(!file_exists($file)){
+				touch($file);
+			}
+			
+			$dosya = fopen($file, "w");
+			fwrite($dosya, $this->duyuruJsonEncode());
+			
+			fclose($dosya);
+		}
 
     }
 
