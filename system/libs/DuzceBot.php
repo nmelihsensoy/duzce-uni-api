@@ -33,7 +33,8 @@
                     
                     $articles[] = $item;
                 }
-    
+                
+                $html->clear();
                 return $articles;	
         }
 
